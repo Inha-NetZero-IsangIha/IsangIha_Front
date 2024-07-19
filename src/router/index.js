@@ -7,6 +7,7 @@ const Intro = lazy(() => import("../page/intro"))
 const Authority = lazy(() => import("../page/authority"))
 const User = lazy(() => import("../page/user"))
 // Admin
+const Login = lazy(() => import("../page/admin/Login.jsx"))
 const Admin = lazy(() => import("../page/admin/Admin.jsx"))
 
 
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loading />}>
             <User />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/login",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Login />
           </Suspense>
         ),
       },
