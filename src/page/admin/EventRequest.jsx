@@ -13,7 +13,9 @@ const EventRequest = ({ formData, setFormData, prevStep }) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords
-          setUserLocation({ latitude, longitude })
+          const TEMP_LOCATION_INHA = {latitude: 37.4509322, longitude: 126.6543828}
+          // setUserLocation({ latitude, longitude })
+          setUserLocation(TEMP_LOCATION_INHA)
         },
         (error) => {
           console.error("위치 받아오기 오류", error)
