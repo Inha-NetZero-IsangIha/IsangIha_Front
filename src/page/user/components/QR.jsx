@@ -8,7 +8,14 @@ const QR = () => {
   const handleScan = (data) => {
     if (data) {
       console.log("QR src:", data.text)
-      navigate("/user") // 스캔 후 유저 페이지로 돌아갑니다.
+      // 스캔한 src로 이동
+      if (data.text.startsWith("http://") || data.text.startsWith("https://")) {
+        // External URL
+        window.location.href = data.text
+      } else {
+        // Internal URL
+        navigate(data.text)
+      }
     }
   }
 
