@@ -37,6 +37,23 @@ const apiData = {
         BOX_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
         BOX_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
         BOX_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+    },
+    usage: {
+        CUP_MINI: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        CUP_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        CUP_MEDIUM: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        CUP_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        PLATE_MINI: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        PLATE_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        PLATE_MEDIUM: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        PLATE_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        TUMBLR_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        TUMBLR_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        TRAY_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        TRAY_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        BOX_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        BOX_MEDIUM: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
+        BOX_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
     }
 }
 
@@ -90,20 +107,20 @@ const Monitor = () => {
   };
 
   const lineData = {
-    labels: Array.from({ length: 14 }, (_, i) => i + 1),
+    labels: Object.keys(apiData.usage),
     datasets: [
       {
-        label: 'A',
+        label: '사용량',
         backgroundColor: 'rgba(75,192,192,0.2)',
-        borderColor: '#4CAF50',
-        data: Array.from({ length: 14 }, () => Math.floor(Math.random() * 6000)),
+        borderColor: 'lightblue',
+        data: Object.values(apiData.usage).map(usage => usage.use),
         fill: true,
       },
       {
-        label: 'B',
+        label: '반환량',
         backgroundColor: 'rgba(153,102,255,0.2)',
         borderColor: '#8BC34A',
-        data: Array.from({ length: 14 }, () => Math.floor(Math.random() * 6000)),
+        data: Object.values(apiData.usage).map(usage => usage.return),
         fill: true,
       },
     ],
@@ -132,7 +149,7 @@ const Monitor = () => {
         </div>
         
         <div className="infographic">
-          <h2>Infographic</h2>
+          <h2>사용량 / 반환량</h2>
           <div className="area-chart">
             <Line data={lineData} />
           </div>
