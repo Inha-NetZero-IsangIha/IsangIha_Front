@@ -1,6 +1,7 @@
 import apiData from './mocker'
 import { Bar, Pie, Doughnut, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from 'chart.js';
+import "../../assets/css/monitor.css"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
 
@@ -12,6 +13,13 @@ const getTotalCost = type => {
     })
 
     return total;
+}
+
+const getWarningColor = (progress) => {
+    if (progress >= 80) return 'red'
+    else if (progress >= 70) return 'orange'
+    else if (progress >= 60) return 'yellow'
+    else return'#4CAF50'
 }
 
 const Monitor = () => {
@@ -83,7 +91,7 @@ const Monitor = () => {
           <Bar data={barData} />
         </div>
 
-        <h2>비용 비교</h2>
+        <h2>비용 비교(₩)</h2>
         <div className="statistics direction-row center-sender">
           <div className="pie-chart">
             <Pie data={pieData} />
@@ -102,10 +110,25 @@ const Monitor = () => {
           </div>
         </div>
         
-        <div className="overview">
-          <h2>Overview</h2>
-          <div className="line-chart">
-            <Line data={lineData} />
+        <div style={{width: '100%'}} className="overview">
+          <h2>수거함 용량(%)</h2>
+          <div style={{flexWrap: 'wrap'}} className="direction-row">
+            {apiData.volume.map((item, index) => (
+                <div key={index} className="card">
+                    <div style={{justifyContent: 'space-between'}} className="direction-row">
+                        <h2 className="card-title">{item.title}</h2>
+                        <div className="warning-icon">
+                            <div style={{backgroundColor: getWarningColor(item.progress), color: 'white', fontSize: '13px'}} className="circle center-sender">!</div>
+                        </div>
+                    </div>
+                    <div>
+                        <p className="card-content">{item.content}</p>
+                        <div className="progress-bar">
+                            <div className="progress-bar-fill" style={{ width: `${item.progress}%` }}></div>
+                        </div>
+                    </div>
+                </div>
+                ))}
           </div>
         </div>
       </div>

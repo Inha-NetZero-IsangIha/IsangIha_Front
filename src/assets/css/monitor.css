@@ -88,3 +88,57 @@
     width: 100%;
     opacity: 0.6;
   }
+
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .card-content {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.2s;
+  }
+
+  .warning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* 아이콘 간격 조정 */
+  }
+  
+  .circle {
+    width: 20px;   /* 아이콘 크기 */
+    height: 20px;  /* 아이콘 크기 */
+    border-radius: 50%;
+  }
