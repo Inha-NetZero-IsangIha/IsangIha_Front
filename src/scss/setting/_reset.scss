@@ -77,17 +77,8 @@ img {
 }
 
 // 디자인 초기화
-input,
 textarea,
 button,
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0;
-    font-size: 16px;
-    border: 0;
-}
 button:focus,
 button:active,
 input:focus,
