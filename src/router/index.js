@@ -11,11 +11,9 @@ const User = lazy(() => import("../page/user"))
 const Login = lazy(() => import("../page/admin/Login.jsx"))
 const Admin = lazy(() => import("../page/admin/Admin.jsx"))
 
-
 const UserMainPage = lazy(() => import("../page/user/components/Main"))
 const QR = lazy(() => import("../page/user/components/QR"))
 const EventDetail = lazy(() => import("../page/user/components/EventDetail"))
-
 
 const router = createBrowserRouter([
   {

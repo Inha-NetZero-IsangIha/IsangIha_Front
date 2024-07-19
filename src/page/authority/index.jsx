@@ -8,7 +8,11 @@ const Authority = () => {
   const navigate = useNavigate()
 
   const onClickMove = () => {
-    navigate("/user")
+    if (selected === "user") {
+      navigate("/user")
+    } else {
+      navigate("/admin")
+    }
   }
 
   return (
