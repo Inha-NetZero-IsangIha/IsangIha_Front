@@ -42,13 +42,13 @@ const Authority = () => {
 
       {selected === "admin" && (
         <p className="authority-description">
-          ish와 함께 수거함을 배치할 회사가 되어주세요.
+          코투리와 함께 수거함을 배치할 회사가 되어주세요.
         </p>
       )}
 
       {selected === "user" && (
         <p className="authority-description">
-          현재 ish에서 제공하는 수거함 위치를 확인해보세요.
+          현재 코투리에서 제공하는 수거함 위치를 확인해보세요.
         </p>
       )}
 

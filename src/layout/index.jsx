@@ -13,7 +13,7 @@ const Layout = () => {
   // 현재 location이 미디어 쿼리 적용 대상인지 확인
   const applyMediaQuery =
     mediaQueryPaths.includes(location.pathname) ||
-    /^\/user\/event\/[0-9a-fA-F-]{36}$/.test(location.pathname)
+    /^\/user\/event\/\d+$/.test(location.pathname)
 
   return (
     <>
