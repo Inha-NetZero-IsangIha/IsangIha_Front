@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/932.abef03bf.chunk.js","mappings":"0KAGA,MAIA,EAJaA,KACJC,EAAAA,EAAAA,KAACC,EAAAA,GAAM,G","sources":["page/user/index.jsx"],"sourcesContent":["import React from \"react\"\nimport { Outlet } from \"react-router-dom\"\n\nconst User = () => {\n  return <Outlet />\n}\n\nexport default User\n"],"names":["User","_jsx","Outlet"],"sourceRoot":""}
