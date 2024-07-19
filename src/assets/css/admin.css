@@ -10,6 +10,12 @@
   justify-content: center;
 }
 
+.vertical-direction-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .direction-row {
   display: flex;
   flex-direction: row;
