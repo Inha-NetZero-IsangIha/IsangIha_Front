@@ -5,6 +5,9 @@ import Layout from "../layout"
 
 const Intro = lazy(() => import("../page/intro"))
 const Authority = lazy(() => import("../page/authority"))
+// Admin
+const Admin = lazy(() => import("../page/admin/Admin.jsx"))
+
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loading />}>
             <Authority />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/admin",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Admin />
           </Suspense>
         ),
       },
