@@ -1,61 +1,8 @@
+import apiData from './mocker'
 import { Bar, Pie, Doughnut, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
-
-const apiData = {
-    carbonEmission: {
-        CUP_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        CUP_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        CUP_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        CUP_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TUMBLR_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TUMBLR_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TRAY_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TRAY_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        BOX_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        BOX_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        BOX_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-    },
-    cost: {
-        CUP_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        CUP_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        CUP_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        CUP_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        PLATE_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TUMBLR_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TUMBLR_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TRAY_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        TRAY_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        BOX_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        BOX_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-        BOX_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
-    },
-    usage: {
-        CUP_MINI: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        CUP_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        CUP_MEDIUM: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        CUP_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        PLATE_MINI: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        PLATE_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        PLATE_MEDIUM: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        PLATE_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        TUMBLR_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        TUMBLR_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        TRAY_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        TRAY_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        BOX_SMALL: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        BOX_MEDIUM: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-        BOX_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
-    }
-}
 
 const getTotalCost = type => {
     let total = 0;
