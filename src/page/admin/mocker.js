@@ -51,8 +51,8 @@ export default {
         BOX_LARGE: {use: Math.floor(Math.random() * 50 + 50), return: Math.floor(Math.random() * 30)},
     },
     volume: [
-        {title: '수거함 1', content: '용량: ', progress: 100},
-        {title: '수거함 2', content: '용량: ', progress: 60},
-        {title: '수거함 3', content: '용량: ', progress: 20},
+        {title: '수거함 1', content: '용량: ', progress: 0},
+        {title: '수거함 2', content: '용량: ', progress: 0},
+        {title: '수거함 3', content: '용량: ', progress: 0},
     ],
 }

@@ -1,4 +1,5 @@
 import apiData from './mocker'
+import {useEffect, useState, useRef} from 'react'
 import { Bar, Pie, Doughnut, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from 'chart.js';
 import "../../assets/css/monitor.css"
@@ -23,6 +24,31 @@ const getWarningColor = (progress) => {
 }
 
 const Monitor = () => {
+    const myRef = useRef(null);
+    const [progressIntervalId, setProgressIntervalId] = useState(-1)
+
+    useEffect(() => {
+        if (progressIntervalId === -1) {
+            const id = setInterval(() => {
+                const el = document.getElementById('card-list')
+                if (el) {
+                    el.childNodes.forEach((item, index) => {
+                        const progressEl = item.querySelector('#progress' + index);
+                        const width = progressEl.style.width.split('%')[0]
+                        if (width > 100) clearInterval(progressIntervalId)
+                        progressEl.style.width = width + Math.floor(Math.random() * 10) + '%'
+                    })
+                }
+            }, 5000);
+
+            setProgressIntervalId(id)
+        }
+
+        return () => {
+            if (progressIntervalId !== -1) clearInterval(progressIntervalId)
+        }
+    }, [])
+
   const barData = {
     labels: Object.keys(apiData.carbonEmission),
     datasets: [
@@ -112,7 +138,7 @@ const Monitor = () => {
         
         <div style={{width: '100%'}} className="overview">
           <h2>수거함 용량(%)</h2>
-          <div style={{flexWrap: 'wrap'}} className="direction-row">
+          <div id="card-list" style={{flexWrap: 'wrap'}} className="direction-row">
             {apiData.volume.map((item, index) => (
                 <div key={index} className="card">
                     <div style={{justifyContent: 'space-between'}} className="direction-row">
@@ -124,7 +150,7 @@ const Monitor = () => {
                     <div>
                         <p className="card-content">{item.content}</p>
                         <div className="progress-bar">
-                            <div className="progress-bar-fill" style={{ width: `${item.progress}%` }}></div>
+                            <div id={'progress' + index} className="progress-bar-fill" style={{ width: `${item.progress}%`, backgroundColor: getWarningColor(item.progress) }}></div>
                         </div>
                     </div>
                 </div>
