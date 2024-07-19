@@ -1,7 +1,11 @@
 import React from "react"
 
 const Loading = () => {
-  return <div className="loader">로딩</div>
+  return (
+    <div className="spinner-container">
+      <div className="spinner" />
+    </div>
+  )
 }
 
 export default Loading
