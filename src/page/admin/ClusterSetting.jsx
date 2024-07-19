@@ -6,13 +6,15 @@ const ClusterSetting = ({ formData, setFormData, nextStep }) => {
   const [locationError, setLocationError] = useState(null)
 
   useEffect(() => {
+    const TEMP_LOCATION_INHA = {latitude: 37.4509322, longitude: 126.6543828}
+    setUserLocation(TEMP_LOCATION_INHA)
+    return;
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords
-          const TEMP_LOCATION_INHA = {latitude: 37.4509322, longitude: 126.6543828}
-          // setUserLocation({ latitude, longitude })
-          setUserLocation(TEMP_LOCATION_INHA)
+          setUserLocation({ latitude, longitude })
         },
         (error) => {
           setLocationError("위치 정보를 받아올 수 없습니다.")
