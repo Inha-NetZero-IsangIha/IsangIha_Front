@@ -6,9 +6,16 @@ import Layout from "../layout"
 const Intro = lazy(() => import("../page/intro"))
 const Authority = lazy(() => import("../page/authority"))
 const User = lazy(() => import("../page/user"))
+
+// Admin
+const Login = lazy(() => import("../page/admin/Login.jsx"))
+const Admin = lazy(() => import("../page/admin/Admin.jsx"))
+
+
 const UserMainPage = lazy(() => import("../page/user/components/Main"))
 const QR = lazy(() => import("../page/user/components/QR"))
 const EventDetail = lazy(() => import("../page/user/components/EventDetail"))
+
 
 const router = createBrowserRouter([
   {
@@ -64,6 +71,22 @@ const router = createBrowserRouter([
             ),
           },
         ],
+      },
+      {
+        path: "/login",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/admin",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Admin />
+          </Suspense>
+        ),
       },
     ],
   },
