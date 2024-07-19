@@ -4,7 +4,6 @@
 // import Slide1 from "../../../assets/Main1.png"
 // import Slide2 from "../../../assets/Main2.png"
 // import { useNavigate } from "react-router-dom"
-// import { v4 as uuidv4 } from "uuid"
 
 // const Main = () => {
 //   const [userCount, setUserCount] = useState(0)
@@ -14,21 +13,12 @@
 //   useEffect(() => {
 //     setUserCount(150)
 
-//     // Mock data with UUIDs
-//     const eventData = [
-//       {
-//         id: uuidv4(),
-//         eventName: "인하대학교",
-//         eventGreeting: "환경을 위한 뜻깊은 행사에 참여해주셔서 감사합니다!",
-//       },
-//       {
-//         id: uuidv4(),
-//         eventName: "힙합플레이페스티벌",
-//         eventGreeting: "제로 웨이스트의 가치를 배워보세요!",
-//       },
-//     ]
-
-//     setEvents(eventData)
+//     // 로컬스토리지에서 데이터를 가져옴
+//     const storedData = localStorage.getItem("eventData")
+//     if (storedData) {
+//       const parsedData = JSON.parse(storedData)
+//       setEvents([parsedData])
+//     }
 //   }, [])
 
 //   return (
@@ -67,14 +57,14 @@
 //       </h1>
 //       <div className="user-event-list">
 //         <div className="user-event-list-title">현재 진행중인 이벤트 공간</div>
-//         {events.map((event) => (
+//         {events.map((event, index) => (
 //           <div
-//             key={event.id}
+//             key={index}
 //             className="user-event-list-item"
-//             onClick={() => navigate(`/user/event/${event.id}`)}
+//             onClick={() => navigate(`/user/event/${event.eventName}`)}
 //           >
 //             <h2>{event.eventName}</h2>
-//             <p>{event.eventGreeting}</p>
+//             <p>{event.enterpriseName}</p>
 //           </div>
 //         ))}
 //       </div>
@@ -89,13 +79,13 @@
 // }
 
 // export default Main
-
 import React, { useState, useEffect } from "react"
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import Slide1 from "../../../assets/Main1.png"
 import Slide2 from "../../../assets/Main2.png"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const Main = () => {
   const [userCount, setUserCount] = useState(0)
@@ -105,12 +95,28 @@ const Main = () => {
   useEffect(() => {
     setUserCount(150)
 
-    // 로컬스토리지에서 데이터를 가져옴
-    const storedData = localStorage.getItem("eventData")
-    if (storedData) {
-      const parsedData = JSON.parse(storedData)
-      setEvents([parsedData])
+    // API 요청으로 데이터를 가져옴
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get(
+          "http://ec2-54-180-141-4.ap-northeast-2.compute.amazonaws.com:8080/api/events"
+        )
+        // 필요한 데이터만 상태에 저장
+        const eventData = response.data.map((event) => ({
+          id: event.id,
+          enterpriseName: event.enterpriseName,
+          eventName: event.eventName,
+          headcount: event.headcount,
+          startDate: event.startDate,
+          endDate: event.endDate,
+        }))
+        setEvents(eventData)
+      } catch (error) {
+        console.error("Error fetching event data:", error)
+      }
     }
+
+    fetchEvents()
   }, [])
 
   return (
@@ -153,7 +159,7 @@ const Main = () => {
           <div
             key={index}
             className="user-event-list-item"
-            onClick={() => navigate(`/user/event/${event.eventName}`)}
+            onClick={() => navigate(`/user/event/${event.id}`)}
           >
             <h2>{event.eventName}</h2>
             <p>{event.enterpriseName}</p>
