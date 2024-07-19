@@ -1,4 +1,3 @@
-
 .full-screen {
   width: 100vw;
   height: 100vh;
@@ -43,7 +42,6 @@
   height: 100px;
   padding: 30px;
   background-color: #00a86b;
-  /* Color change */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,7 +51,6 @@
   font-weight: bold;
   font-size: large;
   color: #fff;
-  /* Change text color */
 }
 
 .admin-content {
@@ -62,13 +59,10 @@
   flex-direction: column;
   padding: 20px;
   background-color: #f5f5f5;
-  /* Background color */
   overflow-y: auto;
-  /* Scrollable content */
 }
 
 .sidebar {
-
   width: 250px;
   height: 100%;
   overflow-y: auto;
@@ -77,9 +71,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #ffffff;
-  /* Background color */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  /* Shadow effect */
 }
 
 .sidebar-menu,
@@ -95,16 +87,13 @@
   padding: 10px;
   cursor: pointer;
   background-color: #f0f0f0;
-  /* Background color */
   border-radius: 5px;
-  /* Rounded corners */
   transition: background-color 0.3s;
 }
 
 .menu-item:hover,
 .project-item:hover {
   background-color: #e0e0e0;
-  /* Hover effect */
 }
 
 .section-title {
@@ -132,7 +121,9 @@
 }
 
 .input-form label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 10px;
   font-weight: bold;
   color: #555;
@@ -140,14 +131,11 @@
 
 .input-form input,
 .input-form textarea {
-
-  width: 100%;
   padding: 10px;
   margin-top: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-
 }
 
 .input-form button {
@@ -160,12 +148,39 @@
 }
 
 .input-form button:hover {
-  background-color: #00a86b;
+  background-color: #007bff;
 }
 
-.input-form input[type="checkbox"] {
+.input-form input[type=“checkbox”] {
   width: 20px;
   height: 20px;
   padding: 0;
 }
 
+.container-row {
+  gap: 10px;
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-row {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.map-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.date-picker {
+  margin-left: 30px;
+}
+
+.coordinate-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
