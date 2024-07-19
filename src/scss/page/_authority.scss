@@ -74,11 +74,12 @@
     }
 
     .authority-button {
-        position: absolute;
+        // position: absolute;
         @include inline-flexbox(center, center);
         bottom: 50px;
         width: 250px;
         padding: 10px 20px;
+        margin-top: 20px;
         background-color: #00a86b;
         border: none;
         border-radius: 5px;
