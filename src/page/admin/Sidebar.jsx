@@ -11,7 +11,7 @@ function Sidebar(props) {
     <article className="sidebar">
       <div className="sidebar-menu">
         {MENUS.map((menu, index) => (
-          <Menu key={index} {...menu} setHeader={props.setHeader} />
+          <Menu key={index} {...menu} header={props.header} setHeader={props.setHeader} />
         ))}
       </div>
     </article>
@@ -20,7 +20,7 @@ function Sidebar(props) {
 
 const Menu = (props) => {
   return (
-    <div className="menu-item" onClick={() => props.setHeader(props.title)}>
+    <div style={props.header === props.title ? {color: '#4CAF50'}:null} className="menu-item" onClick={() => props.setHeader(props.title)}>
       {/* <img src={props.iconPath} alt={props.title} /> */}
       {props.title}
     </div>

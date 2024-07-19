@@ -49,7 +49,7 @@ function Admin() {
     <section className="admin">
       <AdminHeader title={header} />
       <div className="main direction-row">
-        <Sidebar setHeader={setHeader} />
+        <Sidebar header={header} setHeader={setHeader} />
         <div className="admin-content">
           <Content header={header} />
         </div>
