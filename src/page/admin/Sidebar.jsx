@@ -19,8 +19,9 @@ function Sidebar(props) {
 }
 
 const Menu = (props) => {
+  const style = props.header === props.title ? {color: '#4CAF50'}:null;
   return (
-    <div style={props.header === props.title ? {color: '#4CAF50'}:null} className="menu-item" onClick={() => props.setHeader(props.title)}>
+    <div style={style} className="menu-item" onClick={() => props.setHeader(props.title)}>
       {/* <img src={props.iconPath} alt={props.title} /> */}
       {props.title}
     </div>
