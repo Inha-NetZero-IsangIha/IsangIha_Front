@@ -3,24 +3,24 @@ import { Outlet, useLocation } from "react-router-dom"
 
 const Layout = () => {
   const location = useLocation()
-  // const isMainPage = location.pathname === "/"
 
-  // 유저정보 모달을 안띄우고 싶은 라우팅을 설정
-  const noFooterPaths = ["/"]
+  // 현재 경로를 콘솔에 출력하여 확인
+  console.log("Current location:", location.pathname)
 
-  // 현재 location이랑 같은지 확인
-  const showFooter = !noFooterPaths.some((path) =>
-    location.pathname.startsWith(path)
-  )
+  // 미디어 쿼리를 적용할 라우팅을 설정
+  const mediaQueryPaths = ["/authority", "/", "/user", "/user/qr"]
+
+  // 현재 location이 미디어 쿼리 적용 대상인지 확인
+  const applyMediaQuery =
+    mediaQueryPaths.includes(location.pathname) ||
+    /^\/user\/event\/[0-9a-fA-F-]{36}$/.test(location.pathname)
 
   return (
     <>
-      <div
-        className={
-          showFooter ? "content-container" : "nofooter-content-container"
-        }
-      >
-        <Outlet />
+      <div className={applyMediaQuery ? "media-query" : "not-media-query"}>
+        <div id="root">
+          <Outlet />
+        </div>
       </div>
     </>
   )
