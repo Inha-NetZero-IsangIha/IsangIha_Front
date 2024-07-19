@@ -3,40 +3,87 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
 
+const apiData = {
+    carbonEmission: {
+        CUP_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        CUP_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        CUP_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        CUP_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TUMBLR_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TUMBLR_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TRAY_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TRAY_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        BOX_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        BOX_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        BOX_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+    },
+    cost: {
+        CUP_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        CUP_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        CUP_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        CUP_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_MINI: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        PLATE_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TUMBLR_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TUMBLR_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TRAY_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        TRAY_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        BOX_SMALL: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        BOX_MEDIUM: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+        BOX_LARGE: {singleUse: Math.floor(Math.random() * 50 + 50), multiUse: Math.floor(Math.random() * 30)},
+    }
+}
+
+const getTotalCost = type => {
+    let total = 0;
+
+    Object.values(apiData.cost).forEach(cost => {
+        total += cost[type];
+    })
+
+    return total;
+}
+
 const Monitor = () => {
   const barData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    labels: Object.keys(apiData.carbonEmission),
     datasets: [
       {
-        label: 'EU',
-        backgroundColor: '#4CAF50',
-        data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 100)),
+        label: '일회용품',
+        backgroundColor: '#8BC34A',
+        data: Object.values(apiData.carbonEmission).map(emission => emission.singleUse),
       },
       {
-        label: 'USD',
-        backgroundColor: '#8BC34A',
-        data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 100)),
+        label: '다회용품',
+        backgroundColor: '#388E3C',
+        data: Object.values(apiData.carbonEmission).map(emission => emission.multiUse),
       },
     ],
   };
 
   const pieData = {
-    labels: ['A', 'B', 'C', 'D'],
+    labels: ['다회용품', '일회용품'],
     datasets: [
       {
-        data: [300, 50, 100, 80],
-        backgroundColor: ['#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B'],
-        hoverBackgroundColor: ['#388E3C', '#689F38', '#AFB42B', '#FBC02D'],
+        data: [getTotalCost('multiUse'), getTotalCost('singleUse')],
+        backgroundColor: ['#4CAF50', '#8BC34A'],
+        hoverBackgroundColor: ['#388E3C', '#BDBDBD'],
       },
     ],
   };
 
   const doughnutData = {
-    labels: ['Progress'],
+    labels: ['다회용품'],
     datasets: [
       {
-        data: [50, 50],
-        backgroundColor: ['#4CAF50', '#E0E0E0'],
+        data: [getTotalCost('multiUse'), getTotalCost('singleUse')],
+        backgroundColor: ['#8BC34A', '#E0E0E0'],
         hoverBackgroundColor: ['#388E3C', '#BDBDBD'],
       },
     ],
@@ -64,26 +111,24 @@ const Monitor = () => {
 
   return (
     <div className="dashboard">
-      <header className="header">
-        <h1>Dashboard</h1>
-      </header>
-      
       <div style={{gap: '50px'}} className="main-content direction-column">
         <div className="chart-container">
           <div className="chart-header">
+            <h3>탄소배출량(g)</h3>
           </div>
           <Bar data={barData} />
         </div>
 
-        <div className="statistics direction-row">
+        <h2>비용 비교</h2>
+        <div className="statistics direction-row center-sender">
           <div className="pie-chart">
-            <h3>Statistics</h3>
             <Pie data={pieData} />
           </div>
-          <div className="progress-circle">
-            <h3>50%</h3>
+
+          {/* <div className="progress-circle">
+            <h3>다회용품</h3>
             <Doughnut data={doughnutData} />
-          </div>
+          </div> */}
         </div>
         
         <div className="infographic">
