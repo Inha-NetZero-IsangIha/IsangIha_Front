@@ -1,11 +1,11 @@
 import '../../assets/css/admin.css'
 
-function RequestList() {
+function Admin() {
     return (
-        <section className="admin">
+        <section>
             hi
         </section>
     )
 }
 
-export default RequestList;
+export default Admin;
